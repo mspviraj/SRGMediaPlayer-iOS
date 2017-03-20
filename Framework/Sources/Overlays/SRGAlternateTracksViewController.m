@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     
-    self.title = SRGMediaPlayerLocalizedString(@"Audio and Subtitles", nil);
+    self.title = SRGMediaPlayerLocalizedString(@"Audio and Subtitles", @"Title of the alternate tracks popup menu");
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([self class])];
 }
@@ -87,10 +87,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *characteristic = self.characteristics[section];
     if ([characteristic isEqualToString:AVMediaCharacteristicAudible]) {
-        return SRGMediaPlayerLocalizedString(@"Audio", nil);
+        return SRGMediaPlayerLocalizedString(@"Audio", @"Section header title in the alternate tracks popup menu, for audio tracks");
     }
     else if (characteristic == AVMediaCharacteristicLegible) {
-        return SRGMediaPlayerLocalizedString(@"Subtitles & CC", nil);
+        return SRGMediaPlayerLocalizedString(@"Subtitles & CC", @"Section header title in the alternate tracks popup menu, for subtitles & CC tracks");
     }
     else {
        return @"";
@@ -122,7 +122,7 @@
     AVMediaSelectionGroup *group = self.tracksGroupByCharacteristics[characteristic];
     // OFF option for subtitles needs a customisation
     if ((characteristic == AVMediaCharacteristicLegible) && indexPath.row == 0) {
-        cell.textLabel.text = SRGMediaPlayerLocalizedString(@"No subtitles", @"Option to remove subtitles");
+        cell.textLabel.text = SRGMediaPlayerLocalizedString(@"No subtitles", @"Option to remove subtitles in alternate tracks popup menu");
         AVMediaSelectionOption *currentOptionInGroup = [self.player.currentItem selectedMediaOptionInMediaSelectionGroup:group];
         cell.accessoryType = (!currentOptionInGroup) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
